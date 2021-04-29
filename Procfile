@@ -1,1 +1,1 @@
-web: gunicorn supply_chain_management.wsgi
+web:gunicorn supply_chain_management.wsgi
