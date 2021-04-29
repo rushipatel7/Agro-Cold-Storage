@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-8"> <!-- side mathi jagya rakhvi hoy to ->> col-sm-7 offset-1  -->
+            <h4 class="text-center alert alert-info">Show Farmer Data</h4>
+
+            <h4>Total Number Of Records. {{ countData }}</h4>
+            
+            <!-- Print Page -->
+            <form action="">
+                <input type="button" value="Print" onclick="javascript:window.print()">
+            </form>
+            <!-- End Print Page -->
+            
+            <h4>Search Data...</h4> 
+            <form action="{% url 'search_data' %}" method="post">
+                {% csrf_token %}
+            <input type="search" name="searchData" placeholder="Search..." id="searchData">
+            </form>
+
+            <form action="{% url 'search_by_date' %}" method="post">
+                {% csrf_token %}
+                From : <input type="date" name="fromDate" id="fromdate">
+                To   : <input type="date" name="toDate" id="toDate">
+                <input type="submit" value="Search" onsubmit="sort_date()">
+            </form>
+            
+            <script>
+                function sort_date() {
+                    fromDate = document.getElementById('fromdate').value()
+                    todate = document.getElementById('toDate').value()
+                   
+                }
+            </script>
+
+            {% if show_data %}
+            <br><br>
+                    <table class="table table-light">  <!-- table-dark -->
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">First Name</th>
+                                <th scope="col">Last Name</th>
+                                <th scope="col">Address</th>
+                                <th scope="col">Village</th>
+                                <th scope="col">District</th>
+                                <th scope="col">State</th>
+                                <th scope="col">Mobile No.</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">vehicle No.</th>
+                                <th scope="col">Farm Size <br>(Vigas)</th>
+                                <th scope="col">Crops Details</th>
+                                <th scope="col">Crops Weight <br>(Mans)</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Time</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for details in show_data %}
+                              <tr>
+                                  <th scope="row">{{ details.id }}</th>
+                                  <td>{{ details.first_name }}</td>
+                                  <td>{{ details.last_name }}</td>
+                                  <td>{{ details.address }}</td>
+                                  <td>{{ details.village }}</td>
+                                  <td>{{ details.district }}</td>
+                                  <td>{{ details.state }}</td>
+                                  <td>{{ details.mobile_no }}</td>
+                                  <td>{{ details.email }}</td>
+                                  <td>{{ details.vehicle_no }}</td>
+                                  <td>{{ details.farm_size }}</td>
+                                  <td>{{ details.crop_details }}</td>
+                                  <td>{{ details.crop_weight }}</td>
+                                  <td>{{ details.current_date }}</td>
+                                  <td>{{ details.current_time }}</td>
+                                  <td>
+                                      <a href="{% url 'update_data' details.id %}" class="btn btn-warning btn-sm">Edit</a>
+                                      <form action="{% url 'delete_data' details.id %}" method="POST" class="d-inline">
+                                          {% csrf_token %}
+                                          <input type="submit" class="btn btn-danger" value="Delete">
+                                      </form>
+                                  </td>
+                              </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <h4 class="text-center alert alert-warning">No Records</h4>
+            {% endif %}
+                
+        </div>
+    </div>
+{% endblock content %}
+

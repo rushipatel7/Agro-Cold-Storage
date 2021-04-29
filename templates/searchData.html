@@ -1,0 +1,237 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Tables {% endblock title %}
+
+{% block stylesheets %}
+  <style>
+    input:focus{
+      outline: none;
+    }
+
+    input[type='text']:focus {
+     border-radius: 5px;
+     border-width: 1px;
+     /*outline: none; */ 
+    }
+
+    input[type='text'] {
+      border-radius: 5px;
+      border-width: 1px;
+    }
+  </style>
+{% endblock stylesheets %}
+
+{% block content %}
+
+    <!-- Header -->
+    <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+      <a class="h4 mb-0 text-white text-uppercase d-none display-4 d-lg-inline-block ml-5" href="#"> 
+        <li class="fas fa-search text-black-50 text-yellow"></li>
+        Search</a>
+      <div class="container-fluid">
+        <div class="header-body">
+          <!-- Card stats -->
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid mt--7">
+
+      <!-- Table -->
+      {% if data %}
+        <div class="row">
+          <div class="col">
+            <div class="card shadow">
+              <div class="card-header border-0">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <h3 class="mb-0">Farmer Details</h3>
+                    <h5>Total Number Of Records. {{ totalNumRecord }}</h5>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="search_data">
+                      <form method="POST" action="{% url 'search_data' %}" class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+                        {% csrf_token %}
+                        <div class="form-group mb-0">
+                          <div class="input-group input-group-alternative">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text"><i class="fas fa-search text-black-50"></i></span>
+                            </div>
+                            <input class="form-group text-black-50" placeholder="Search" name="searchData" type="text" style="border: none;">
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div> 
+                </div>
+              </div>
+              <div class="col"></div>
+              <div class="table-responsive">
+                <table class="table align-items-center table-flush">
+                  <thead class="thead-light">
+                    <tr>
+                      <th scope="col">ID</th>
+                      <th scope="col">First Name</th>
+                      <th scope="col">Surname</th>
+                      <th scope="col">Address</th>
+                      <th scope="col">Village</th>
+                      <!-- <th scope="col">District</th> -->
+                      <th scope="col">Pincode</th>
+                      <!-- <th scope="col">State</th> -->
+                      <th scope="col">Mobile No.</th>
+                      <!-- <th scope="col">Email</th> -->
+                      <!-- <th scope="col">vehicle No.</th> -->
+                      <!-- <th scope="col">Farm Size <br>(Vigas)</th> -->
+                      <!-- <th scope="col">Crops Details</th> -->
+                      <th scope="col">Crops Weight <br>(Mans)</th>
+                      <th scope="col">Date</th>
+                      <!-- <th scope="col">Time</th> -->
+                      <th scope="col">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for details in data %}
+                                <tr>
+                                    <!-- <th scope="row">{{ details.id }}</th> -->
+                                    <th scope="row">{{ forloop.counter }}</th> <!-- NumberWise Data Display -->
+                                    <td class="editable" data-id="{{ details.id }}" data-type="first_name">{{ details.first_name }}</td>
+                                    <td class="editable" data-id="{{ details.id }}" data-type="last_name">{{ details.last_name }}</td>
+                                    <td class="editable" data-id="{{ details.id }}" data-type="address">{{ details.address }}</td>
+                                    <td class="editable" data-id="{{ details.id }}" data-type="village">{{ details.village }}</td>
+                                    <!-- <td class="editable" data-id="{{ details.id }}" data-type="district">{{ details.district }}</td> -->
+                                    <td class="editable" data-id="{{ details.id }}" data-type="pincode">{{ details.pincode }}</td>
+                                    <!-- <td class="editable" data-id="{{ details.id }}" data-type="state">{{ details.state }}</td> -->
+                                    <td class="editable" data-id="{{ details.id }}" data-type="mobile_no">{{ details.mobile_no }}</td>
+                                    <!-- <td class="editable" data-id="{{ details.id }}" data-type="email">{{ details.email }}</td> -->
+                                    <!-- <td class="editable" data-id="{{ details.id }}" data-type="vehicle_no">{{ details.vehicle_no }}</td> -->
+                                    <!-- <td class="editable" data-id="{{ details.id }}" data-type="farm_size">{{ details.farm_size }}</td> -->
+                                    <!-- <td class="editable" data-id="{{ details.id }}" data-type="crop_details">{{ details.crop_details }}</td> -->
+                                    <td class="editable" data-id="{{ details.id }}" data-type="crop_weight">{{ details.crop_weight }}</td>
+                                    <td class="editable" data-id="{{ details.id }}" data-type="current_date">{{ details.current_date }}</td>
+                                    <!-- <td class="editable" data-id="{{ details.id }}" data-type="current_time">{{ details.current_time }}</td> -->
+                                    <td>
+                                        <!-- <a href="{% url 'update_data' details.id %}" class="btn btn-warning btn-sm">
+                                          <i class="ni ni-fat-add"></i> Edit
+                                          </a> -->
+                                        <!-- <a href="#sellTab" class="btn btn-warning btn-sm">
+                                          <i class="ni ni-fat-add"></i> Edit
+                                          </a> -->
+                                        <form action="{% url 'delete_data' details.id %}" method="POST" class="d-inline">
+                                            {% csrf_token %}
+                                            <!-- <input type="submit" class="btn btn-danger" value="delete"> -->
+                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                <i class="ni ni-fat-remove"></i> Delete
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                              {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <div class="card-footer py-4">
+                <h3 class="heading-small text-red">*Double tap to edit data</h3>
+                <nav aria-label="...">
+                  <ul class="pagination justify-content-end mb-0">
+                    <li class="page-item disabled">
+                      <a class="page-link" href="#" tabindex="-1">
+                        <i class="fas fa-angle-left"></i>
+                        <span class="sr-only">Previous</span>
+                      </a>
+                    </li>
+                    <li class="page-item active">
+                      <a class="page-link" href="#">1</a>
+                    </li>
+                    <li class="page-item">
+                      <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                      <a class="page-link" href="#">
+                        <i class="fas fa-angle-right"></i>
+                        <span class="sr-only">Next</span>
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+      
+      {% include "includes/footer.html" %}
+
+    </div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function(){
+
+        // Clickable Input text on specific table field
+        $(document).on("dblclick", ".editable", function(){
+          var value = $(this).text();
+          var input = "<input type = 'text' class='input-data' value='"+value+"' class='form-control'>";
+          $(this).html(input);
+          $(this).removeClass("editable");
+        });
+
+        // Set Old Value default then change value
+        $(document).on("blur",".input-data", function(){
+          var value = $(this).val();
+          var td = $(this).parent("td");
+          $(this).remove();
+          td.html(value);
+          td.addClass("editable");
+          var type = td.data("type");
+          sendToServer(td.data("id"), value, type);
+        });
+
+        // Enter Event to save 
+        $(document).on("keypress",".input-data", function(e){
+          var key = e.which; // Enter Key Value is 13
+          if(key==13){  
+            var value = $(this).val();
+            var td = $(this).parent("td");
+            $(this).remove();
+            td.html(value);
+            td.addClass("editable");
+            var type = td.data("type");
+            sendToServer(td.data("id"), value, type);
+          }
+        });
+        
+        function sendToServer(id,value,type){
+          console.log(id);
+          console.log(value);
+          console.log(type);
+          $.ajax({
+            // url: "http://127.0.0.1:8000/farmerUpdate",
+            url: "{% url 'farmer_update' %}",
+            type: "POST",
+            data: {id:id, type:type, value:value},
+          })
+          .done(function(response){
+            console.log(response);
+          })
+          .fail(function(){
+            console.log("Error Occured");
+          })
+        }
+      });
+    </script>
+
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script> -->
+{% endblock javascripts %}
+
+
+
+
+

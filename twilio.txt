@@ -1,0 +1,6 @@
+recovery key = TdfzynAu26DcaZjeyx_J2XBhlrgDRzqDyDL_-Ljd
+
+ACCOUNT SID = AC7e092435f515ede4d0b8dbd1f4c4faa9
+
+AUTH TOKEN = 5cfd04bb3df4a92d615e1654341d60dd
+

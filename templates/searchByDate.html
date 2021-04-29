@@ -1,0 +1,165 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Search By Date {% endblock title %}
+
+{% block stylesheets %}
+  <style>
+    input:focus{
+      outline: none;
+    }
+
+    input[type='text']:focus {
+     border-radius: 5px;
+     border-width: 1px;
+     /*outline: none; */ 
+    }
+
+    input[type='text'] {
+      border-radius: 5px;
+      border-width: 1px;
+    }
+  </style>
+{% endblock stylesheets %}
+
+{% block content %}
+    <!-- Header -->
+    <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+      <a class="h4 mb-0 text-white text-uppercase d-none display-4 d-lg-inline-block ml-5" href="/"> 
+        <li class="fas fa-search text-black-50 text-yellow"></li>
+        Search</a>
+        <div class="container-fluid">
+        </div>
+      </div>
+
+      <div class="container-fluid mt--7">
+
+        <!-- Table -->
+          <div class="row">
+            <div class="col">
+              <div class="card shadow">
+                <div class="card-header border-0">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <h3 class="mb-0">Find Farmer Data</h3>
+                      
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="search_data">
+                        <form method="POST" action="{% url 'search_data' %}" class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+                          {% csrf_token %}
+                          <div class="form-group mb-0">
+                            <div class="input-group input-group-alternative">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-search text-black-50"></i></span>
+                              </div>
+                              <input class="form-group text-black-50"  placeholder="Search" name="searchData" type="text" style="border: none;">
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div> 
+                  </div>
+                </div>
+                <div class="col"></div>
+                <div class="table-responsive">
+                  <table class="table align-items-center table-flush">
+                    <thead class="thead-light">
+                      <tr>
+                        <th scope="col">Date Range</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <form action="{% url 'search_by_date' %}" method="post">
+                                    {% csrf_token %}
+                                    <h6 class="heading-small text-muted mb-4">ENTER DATE RAGE YOU WANT TO SEARCH</h6>
+                                    <div class="pl-lg-4">
+
+                                      <div class="row">
+                                        <div class="col-lg-6">
+                                          <div class="form-group">
+                                              <label class="form-control-label" for="fromdate">Form: </label>
+                                              <input type="date" id="fromdate" name="fromDate" class="form-control form-control-alternative">
+                                          </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                          <div class="form-group">
+                                              <label class="form-control-label" for="toDate">To: </label>
+                                              <input type="date" id="toDate" name="toDate" class="form-control form-control-alternative">
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <button class="btn btn-sm btn-primary">SEARCH</button>
+                                    </div>
+                                    <!-- From : <input type="date" name="fromDate" id="fromdate">
+                                    To   : <input type="date" name="toDate" id="toDate"> -->
+                                    <!-- <input type="submit" value="Search"> -->
+                                </form>
+                            </td>
+                        </tr>
+
+                        <!-- <hr class="my-4"/> -->
+                        <tr>
+                          <td>
+                            <form action="{% url 'advance_search' %}" method="post">
+                              {% csrf_token %}
+                              <h6 class="heading-small text-muted mb-4">Advance Search</h6>
+                              <div class="pl-lg-4">
+                                <div class="row">
+                                  <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-first-name">First Name </label>
+                                        <input type="text" id="input-first-name" name="input-first-name" placeholder="First Name" class="form-control form-control-alternative">
+                                    </div>
+                                  </div>
+                                  <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-last-name">Surname </label>
+                                        <input type="text" id="input-last-name" name="input-last-name" placeholder="Last Name" class="form-control form-control-alternative">
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="row">
+                                  <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-village">Village </label>
+                                        <input type="text" id="input-village" name="input-village" placeholder="Village" class="form-control form-control-alternative">
+                                    </div>
+                                  </div>
+                                  <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-mobile-no">Mobile Number </label>
+                                        <input type="text" id="input-mobile-no" name="input-mobile-no" placeholder="Mobile Number" class="form-control form-control-alternative">
+                                    </div>
+                                  </div>
+                                </div>
+                                <button class="btn btn-sm btn-primary">SEARCH</button>
+                              </div>
+                            </form>
+                          </td>
+                        </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+    
+        {% include "includes/footer.html" %}
+  
+      </div>
+
+
+    <!-- <div class="container-fluid">
+        <form action="{% url 'search_by_date' %}" method="post">
+            {% csrf_token %}
+            From : <input type="date" name="fromDate" id="fromdate">
+            To   : <input type="date" name="toDate" id="toDate">
+            <input type="submit" value="Search">
+        </form>
+    </div> -->
+{% endblock content %} 

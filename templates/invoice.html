@@ -1,0 +1,238 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Search By Date {% endblock title %}
+
+{% load static %}
+{% block content %}
+    <!-- Header -->
+    <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+      <a class="h4 mb-0 text-white text-uppercase d-none display-4 d-lg-inline-block ml-5" href="/"> 
+        <i class="fas fa-file-invoice text-info"></i>
+        generate INVOICE</a>
+      <div class="container-fluid">
+          <div class="header-body">
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid mt--7">
+
+        <!-- Table -->
+        <div class="row">
+
+            <div class="col-xl-12 order-xl-1">
+              <div class="card bg-secondary shadow">
+                <div class="card-header bg-white border-0">
+                  <div class="row align-items-center">
+                    <div class="col-12">
+                      <h2 class="mb-0 text-left text-green font-weight-bold">AGRO COLD STORAGE</h2>
+                    </div>
+                    
+                  </div>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="{% url 'invoice' %}">
+                        {% csrf_token %}
+                        <!-- <h6 class="heading-small text-muted mb-4">Invoice Generator</h6> -->
+                        <div class="pl-lg-4">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-first-name">Customer Name</label>
+                                        <input type="text" name="customer_name" id="customer_name" class="form-control form-control-alternative"
+                                        placeholder="Customer Name">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-mobile_number">Mobile Number</label>
+                                        <input type="text" name="mob" id="mob" class="form-control form-control-alternative"
+                                        placeholder="Mobile Number">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-mobile_number">Invoice Date</label>
+                                        <input type="date" name="date" id="date" class="form-control form-control-alternative">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-mobile_number">GST Number</label>
+                                        <input type="text" name="gst" id="gst" class="form-control form-control-alternative"
+                                        placeholder="Enter GST NUmber">
+                                    </div>
+                                </div>
+                            </div> -->
+
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-mobile_number">Item</label>
+                                        <input type="text" name="item" id="item" class="form-control form-control-alternative"
+                                        value="Patatoes">
+                                    </div>
+                                </div>
+                            
+
+                            
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-mobile_number">Quantity (Katta)</label>
+                                        <input type="text" name="quan" id="quan" class="form-control form-control-alternative"
+                                        placeholder="Enter Quantity">
+                                    </div>
+                                </div>
+                            
+
+                            
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-mobile_number">Rent Price (Per Katta)</label>
+                                        <input type="text" name="price" id="price" class="form-control form-control-alternative"
+                                        placeholder="Enter Price">
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-mobile_number">Total Price</label>
+                                        <input type="text" name="total_price" id="total_price" class="form-control form-control-alternative"
+                                        placeholder="Total Price">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <input type="text" name="mob" id="mob"> -->
+
+                            <!-- <input type="text" name="re" id="re" placeholder="return"> -->
+                                
+
+                            <!-- {% if de %}
+                                {% for i in de %}
+                                  <p> {{ i.first_name }} </p>
+                                {% endfor %}
+                            {% endif %} -->
+                                
+
+                            <button class="btn btn-sm btn-primary">Invoice</button>
+                        </div>
+                        <!-- <hr class="my-4" /> -->
+                    </form>
+
+
+                    <!-- <form method="POST" action="{% url 'invoice' %}">
+                        {% csrf_token %}
+                        <h6 class="heading-small text-muted mb-4">Farmer information</h6>
+                        <div class="pl-lg-4">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-first-name">First Name</label>
+                                        <select class="form-control form-control-alternative select"  name="first_name_select" id="">
+                                            <option value="">Select First Name</option>
+                                            {% for name in data %}
+                                              <option class="text-dark" value="{{ name.id }}">{{ name.first_name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-last-name">Last Name</label>
+                                        <select class="form-control form-control-alternative select"  name="last_name_select" id="">
+                                            <option value="">Select Last Name</option>
+                                            {% for name in data %}
+                                            <option class="text-dark" value="{{ name.last_name }}">{{ name.last_name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-mobile_number">Mobile Number</label>
+                                        <input type="text" name="mob" id="mob" class="form-control form-control-alternative"
+                                        placeholder="Mobile Number">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-mobile_number">Return Back Weight</label>
+                                        <input type="text" name="re" id="re" class="form-control form-control-alternative"
+                                        placeholder="Enter Return Back Weight">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <input type="text" name="mob" id="mob">
+
+                            <input type="text" name="re" id="re" placeholder="return">
+                                
+
+                            {% if de %}
+                                {% for i in de %}
+                                  <p> {{ i.first_name }} </p>
+                                {% endfor %}
+                            {% endif %}
+                                
+
+                            <button class="btn btn-sm btn-primary">Invoice</button>
+                        </div>
+                        <hr class="my-4" />
+                    </form> -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+    
+        {% include "includes/footer.html" %}
+  
+      </div>
+
+
+    <!-- <div class="container-fluid">
+        <form action="{% url 'search_by_date' %}" method="post">
+            {% csrf_token %}
+            From : <input type="date" name="fromDate" id="fromdate">
+            To   : <input type="date" name="toDate" id="toDate">
+            <input type="submit" value="Search">
+        </form>
+    </div> -->
+{% endblock content %} 
+
+
+{% block javascripts %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+        $(".select option").val(function(idx, val) {
+            $(this).siblings('[value="'+ val +'"]').remove();
+          });
+
+        // WithOut Clicking Multiplication Using JQuery
+          $(function(){
+            $('#quan, #price').keyup(function(){
+               var value1 = parseFloat($('#quan').val()) || 0;
+               var value2 = parseFloat($('#price').val()) || 0;
+               $('#total_price').val(value1 * value2);
+            });
+         });
+    </script>
+{% endblock javascripts %}
+    

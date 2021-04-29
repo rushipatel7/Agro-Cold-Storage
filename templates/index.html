@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Supply Chain Management For Cold Storage</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <link rel="icon" href="{% static 'img/logo/logo_green.png' %}" type="image/gif" sizes="16x16">
+    <style>
+        #login{
+            color: inherit;
+            text-decoration: none;
+        }
+        #login:hover{
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div id="box1"></div>
+
+        <div id="box2">
+            <div id="text">
+                SUPPLY CHAIN <br> MANAGEMENT
+            </div>
+        </div>
+
+        <div id="box3">
+            <div id="container">
+                <div id="logo">
+                    <img src="{% static 'img/logo/logo_green.png' %}">
+                </div>
+                <div id="menu">
+                    <ul>
+                        <li>HOME</li>
+                        <li>SERVICES</li>
+                        <li>ABOUT</li>
+                        <li>CONTACT</li>
+                        <li><a href="{% url 'admin-login' %}" id="login">ADMIN LOGIN</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

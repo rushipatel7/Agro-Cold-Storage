@@ -1,0 +1,16 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-8 offset-2">
+            <h4 class="heading-small text-muted mb-4">Update farmer Details</h4>
+            
+            <form method="post" action="">
+                {% csrf_token %}
+                {{form.as_p}}
+                <input type="submit" class="btn btn-sm btn-success" value="Update">
+                <a href="{% url 'farmer_data' %}" class="btn btn-sm btn-primary">Back to Home</a>
+            </form>
+        </div>
+    </div>
+{% endblock content %}

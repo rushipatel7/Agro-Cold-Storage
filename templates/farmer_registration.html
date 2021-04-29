@@ -1,0 +1,343 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Search By Date {% endblock title %}
+
+{% load static %}
+{% block content %}
+    <!-- Header -->
+    <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+      <a class="h4 mb-0 text-white text-uppercase d-none display-4 d-lg-inline-block ml-5" href="/"> 
+        <li class="ni ni-single-02 text-yellow"></li>
+        Registration</a>
+      <div class="container-fluid">
+          <div class="header-body">
+            <!-- Card stats -->
+            <!-- <div class="row">
+              <div class="col-xl-3 col-lg-6">
+                <div class="card card-stats mb-4 mb-xl-0">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col">
+                        <h5 class="card-title text-uppercase text-muted mb-0">Traffic</h5>
+                        <span class="h2 font-weight-bold mb-0">350,897</span>
+                      </div>
+                      <div class="col-auto">
+                        <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                          <i class="fas fa-chart-bar"></i>
+                        </div>
+                      </div>
+                    </div>
+                    <p class="mt-3 mb-0 text-muted text-sm">
+                      <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                      <span class="text-nowrap">Since last month</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-6">
+                <div class="card card-stats mb-4 mb-xl-0">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col">
+                        <h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
+                        <span class="h2 font-weight-bold mb-0">2,356</span>
+                      </div>
+                      <div class="col-auto">
+                        <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+                          <i class="fas fa-chart-pie"></i>
+                        </div>
+                      </div>
+                    </div>
+                    <p class="mt-3 mb-0 text-muted text-sm">
+                      <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
+                      <span class="text-nowrap">Since last week</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-6">
+                <div class="card card-stats mb-4 mb-xl-0">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col">
+                        <h5 class="card-title text-uppercase text-muted mb-0">Sales</h5>
+                        <span class="h2 font-weight-bold mb-0">924</span>
+                      </div>
+                      <div class="col-auto">
+                        <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+                          <i class="fas fa-users"></i>
+                        </div>
+                      </div>
+                    </div>
+                    <p class="mt-3 mb-0 text-muted text-sm">
+                      <span class="text-warning mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
+                      <span class="text-nowrap">Since yesterday</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-6">
+                <div class="card card-stats mb-4 mb-xl-0">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col">
+                        <h5 class="card-title text-uppercase text-muted mb-0">Performance</h5>
+                        <span class="h2 font-weight-bold mb-0">49,65%</span>
+                      </div>
+                      <div class="col-auto">
+                        <div class="icon icon-shape bg-info text-white rounded-circle shadow">
+                          <i class="fas fa-percent"></i>
+                        </div>
+                      </div>
+                    </div>
+                    <p class="mt-3 mb-0 text-muted text-sm">
+                      <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
+                      <span class="text-nowrap">Since last month</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid mt--7">
+
+        <!-- Table -->
+        <div class="row">
+            <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+              <div class="card card-profile shadow">
+                <div class="row justify-content-center">
+                  <div class="col-lg-3 order-lg-2">
+                    <div class="card-profile-image">
+                      <a href="#">
+                        <img src="{% static 'img/profile/user.png' %}" class="rounded-circle">
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+                  <div class="d-flex justify-content-between">
+                    <a href="#" class="btn btn-sm btn-info mr-4">Connect</a>
+                    <a href="#" class="btn btn-sm btn-default float-right">Message</a>
+                  </div>
+                </div>
+                <div class="card-body pt-0 pt-md-4">
+                  <div class="row">
+                    <div class="col">
+                      <div class="card-profile-stats d-flex justify-content-center mt-md-5">
+                        <div>
+                          <span class="heading">{{ farmer_count }}</span>
+                          <span class="description">Total Farmer</span>
+                        </div>
+                        <!-- <div>
+                          <span class="heading">10</span>
+                          <span class="description">Photos</span>
+                        </div>
+                        <div>
+                          <span class="heading">89</span>
+                          <span class="description">Comments</span>
+                        </div> -->
+                      </div>
+                    </div>
+                  </div>
+                  <div class="text-center">
+                    <h3>
+                      {{ request.user.username }}
+                    </h3>
+                    <div class="h5 font-weight-300">
+                      {{ request.user.email }}
+                    </div>
+                    <div class="h5 mt-4">
+                      <i class="ni business_briefcase-24 mr-2"></i>Agro Cold Storage
+                    </div>
+                    <div>
+                      <!-- <i class="ni education_hat mr-2"></i>University of Computer Science -->
+                    </div>
+                    <hr class="my-4" />
+                    <!-- <p>Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music.</p>
+                    <a href="#">Show more</a> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-8 order-xl-1">
+              <div class="card bg-secondary shadow">
+                <div class="card-header bg-white border-0">
+                  <div class="row align-items-center">
+                    <div class="col-8">
+                      <h3 class="mb-0">Farmer Registration</h3>
+                    </div>
+                    <div class="col-4 text-right">
+                      <a href="#!" class="btn btn-sm btn-primary">Settings</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="{% url 'farmer_registration' %}">
+                        {% csrf_token %}
+                        <h6 class="heading-small text-muted mb-4">Farmer information</h6>
+                        <div class="pl-lg-4">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-first-name">First Name</label>
+                                        <span><label class="text-red">*</label></span>
+                                        <input type="text" id="input-first-name" name="input-first-name" class="form-control form-control-alternative"
+                                            placeholder="First Name">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-last-name">Last Name(Surname)</label>
+                                        <span><label class="text-red">*</label></span>
+                                        <input type="text" id="input-last-name" name="input-last-name" class="form-control form-control-alternative"
+                                            placeholder="Last Name">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                      <label class="form-control-label" for="input-address">Address</label>
+                                      <span><label class="text-red">*</label></span>
+                                      <input type="text" id="input-address" name="input-address" class="form-control form-control-alternative"
+                                          placeholder="Address">
+                                  </div>
+                                </div>
+                                <!-- <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-email">Email</label>
+                                        <input type="text" id="input-email" name="input-email" class="form-control form-control-alternative"
+                                            placeholder="Email">
+                                    </div>
+                                </div> -->
+
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                      <label class="form-control-label" for="input-pincode">Pincode</label>
+                                      <span><label class="text-red">*</label></span>
+                                      <input type="text" id="input-pincode" name="input-pincode" class="form-control form-control-alternative"
+                                          placeholder="Pin Code">
+                                  </div>
+                                </div>
+
+                                
+                            </div>
+                        
+                            <div class="row">
+
+                              <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="input-village">Village</label>
+                                    <span><label class="text-red">*</label></span>
+                                    <input type="text" id="input-village" name="input-village" class="form-control form-control-alternative"
+                                        placeholder="Village">
+                                </div>
+                              </div>
+
+                              <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="input-mobile">Mobile Number</label>
+                                    <span><label class="text-red">*</label></span>
+                                    <input type="text" id="input-mobile" name="input-mobile" class="form-control form-control-alternative"
+                                        placeholder="Mobile Number">
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="row">
+                                
+                                <!-- <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-district">District</label>
+                                        <input type="text" id="input-district" name="input-district" class="form-control form-control-alternative"
+                                            placeholder="District">
+                                    </div>
+                                </div> -->
+                            </div>
+
+                            <div class="row">
+                                <!-- <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-state">State</label>
+                                        <input type="text" id="input-state" name="input-state" class="form-control form-control-alternative"
+                                            placeholder="State">
+                                    </div>
+                                </div> -->
+                                <!-- <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-vehicle-number">Vehicle Number</label>
+                                        <span><label class="text-red">*</label></span>
+                                        <input type="text" id="input-vehicle-number" name="input-vehicle-number" class="form-control form-control-alternative"
+                                            placeholder="Vehicle Number">
+                                    </div>
+                                </div> -->
+
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                      <label class="form-control-label" for="input-crop-details">Crop Details</label>
+                                      <span><label class="text-red">*</label></span>
+                                      <input type="text" id="input-crop-details" name="input-crop-details" class="form-control form-control-alternative"
+                                          value="Potatoes">
+                                  </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                      <label class="form-control-label" for="input-crop-weight">Crop Weight</label>
+                                      <span><label class="text-red">*</label></span>
+                                      <input type="text" id="input-crop-weight" name="input-crop-weight" class="form-control form-control-alternative"
+                                          placeholder="Crop weight in (Man)">
+                                  </div>
+                              </div>
+
+                            </div>
+
+                            <div class="row">
+                                <!-- <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-crop-weight">Crop Weight</label>
+                                        <span><label class="text-red">*</label></span>
+                                        <input type="text" id="input-crop-weight" name="input-crop-weight" class="form-control form-control-alternative"
+                                            placeholder="Crop weight in (Man)">
+                                    </div>
+                                </div> -->
+                            </div>
+
+                            <div class="row">
+                                <!-- <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-farm-size">Farm Size</label>
+                                        <input type="text" id="input-farm-size" name="input-farm-size" class="form-control form-control-alternative"
+                                            placeholder="Farm Size in (Viga's)">
+                                    </div>
+                                </div> -->
+                            </div>
+
+                            <button class="btn btn-sm btn-primary">Register</button>
+                        </div>
+                        <!-- <hr class="my-4" /> -->
+                    </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+    
+        {% include "includes/footer.html" %}
+  
+      </div>
+
+
+    <!-- <div class="container-fluid">
+        <form action="{% url 'search_by_date' %}" method="post">
+            {% csrf_token %}
+            From : <input type="date" name="fromDate" id="fromdate">
+            To   : <input type="date" name="toDate" id="toDate">
+            <input type="submit" value="Search">
+        </form>
+    </div> -->
+{% endblock content %} 

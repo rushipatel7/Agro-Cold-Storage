@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>login</title>
+<style id="applicationStylesheet" type="text/css">
+	.mediaViewInfo {
+		--web-view-name: login;
+		--web-view-id: login;
+		--web-scale-on-resize: true;
+		--web-enable-deep-linking: true;
+	}
+	:root {
+		--web-view-ids: login;
+	}
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+		border: none;
+	}
+	#login {
+		position: absolute;
+		width: 1920px;
+		height: 1080px;
+		background-color: rgba(255,255,255,1);
+		overflow: hidden;
+		--web-view-name: login;
+		--web-view-id: login;
+		--web-scale-on-resize: true;
+		--web-enable-deep-linking: true;
+	}
+	@keyframes fadein {
+	
+		0% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+		}
+	
+	}
+	#Rectangle_1 {
+		fill: rgba(255,255,255,1);
+	}
+	.Rectangle_1 {
+		position: absolute;
+		overflow: visible;
+		width: 960px;
+		height: 1080px;
+		left: 0px;
+		top: 0px;
+	}
+	#Rectangle_2 {
+		fill: rgba(172,200,242,0.831);
+	}
+	.Rectangle_2 {
+		position: absolute;
+		overflow: visible;
+		width: 960px;
+		height: 1080px;
+		left: 960px;
+		top: 0px;
+		--web-animation: fadein 0.3s ease-out;
+		--web-action-type: page;
+		--web-action-target: Dashboard.html;
+		cursor: pointer;
+	}
+	#Login_j {
+		left: 146px;
+		top: 169px;
+		position: absolute;
+		overflow: visible;
+		width: 661px;
+		height: 101px;
+		text-align: left;
+		font-family: Avenir Next LT Pro;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 84px;
+		color: rgba(17,17,17,1);
+	}
+	#Login_to_access_ {
+		left: 146px;
+		top: 294px;
+		position: absolute;
+		overflow: visible;
+		width: 661px;
+		height: 54px;
+		text-align: left;
+		font-family: Avenir Next LT Pro;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 45px;
+		color: rgba(130,130,130,1);
+	}
+	#Rectangle_3 {
+		fill: rgba(255,255,255,1);
+		stroke: rgba(152,152,152,1);
+		stroke-width: 1px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.Rectangle_3 {
+		position: absolute;
+		overflow: visible;
+		width: 660px;
+		height: 68px;
+		left: 146px;
+		top: 481px;
+	}
+	#Email {
+		left: 146px;
+		top: 427px;
+		position: absolute;
+		overflow: visible;
+		width: 661px;
+		height: 54px;
+		text-align: left;
+		font-family: Arial Rounded MT;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 35px;
+		color: rgba(17,17,17,1);
+	}
+	#Enter_your_email {
+		left: 180px;
+		top: 505px;
+		position: absolute;
+		overflow: visible;
+		width: 168px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Arial Rounded MT;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 21px;
+		color: rgba(130,130,130,1);
+	}
+	#Rectangle_4 {
+		fill: rgba(255,255,255,1);
+		stroke: rgba(152,152,152,1);
+		stroke-width: 1px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.Rectangle_4 {
+		position: absolute;
+		overflow: visible;
+		width: 660px;
+		height: 68px;
+		left: 146px;
+		top: 667px;
+	}
+	#Password {
+		left: 146px;
+		top: 613px;
+		position: absolute;
+		overflow: visible;
+		width: 661px;
+		height: 54px;
+		text-align: left;
+		font-family: Arial Rounded MT;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 35px;
+		color: rgba(17,17,17,1);
+	}
+	#Enter_your_password {
+		left: 180px;
+		top: 691px;
+		position: absolute;
+		overflow: visible;
+		width: 204px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Arial Rounded MT;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 20px;
+		color: rgba(130,130,130,1);
+	}
+	#Rectangle_5 {
+		fill: rgba(108,99,255,0.961);
+		stroke: rgba(112,112,112,1);
+		stroke-width: 1px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.Rectangle_5 {
+		position: absolute;
+		overflow: visible;
+		width: 251px;
+		height: 74px;
+		left: 555px;
+		top: 799px;
+	}
+	#Login_s {
+		left: 627px;
+		top: 813px;
+		position: absolute;
+		overflow: visible;
+		width: 109px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Avenir Next LT Pro;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 40px;
+		color: rgba(255,255,255,1);
+	}
+	#Agro_Cold_Storage_Ltd {
+		left: 1084px;
+		top: 588px;
+		position: absolute;
+		overflow: visible;
+		width: 677px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Avenir Next LT Pro;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 61px;
+		color: rgba(16,81,42,1);
+	}
+	#New_Layer {
+		mix-blend-mode: normal;
+		position: absolute;
+		width: 236.728px;
+		height: 244.904px;
+		left: 1400px;
+		top: 295.096px;
+		overflow: visible;
+	}
+	#Group_1 {
+		position: absolute;
+		width: 236.728px;
+		height: 244.904px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#Path_1 {
+		fill: rgba(16,81,42,1);
+		stroke: rgba(16,81,42,1);
+		stroke-width: 1px;
+		stroke-linejoin: round;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.Path_1 {
+		overflow: visible;
+		position: absolute;
+		width: 237.728px;
+		height: 245.904px;
+		left: 0px;
+		top: 0px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+</style>
+
+</head>
+<body>
+<div id="login">
+	<svg class="Rectangle_1">
+		<rect id="Rectangle_1" rx="0" ry="0" x="0" y="0" width="960" height="1080">
+		</rect>
+	</svg>
+	<svg class="Rectangle_2">
+		<rect onclick="application.goToTargetView(event)" id="Rectangle_2" rx="0" ry="0" x="0" y="0" width="960" height="1080">
+		</rect>
+	</svg>
+	<div id="Login_j">
+		<span>Login</span>
+	</div>
+	<div id="Login_to_access_">
+		<span>Login to access </span>
+	</div>
+	<svg class="Rectangle_3">
+		<rect id="Rectangle_3" rx="15" ry="15" x="0" y="0" width="660" height="68">
+		</rect>
+    </svg>
+    
+    <form action="{% url 'admin-login' %}" method="post">
+        {% csrf_token %}
+        <div id="Email">
+            <span>Email</span>
+        </div>
+        <div id="Enter_your_email" class="email">
+            <span>Enter your email</span>
+        </div>
+        <svg class="Rectangle_4">
+            <rect id="Rectangle_4" rx="15" ry="15" x="0" y="0" width="660" height="68">
+            </rect>
+        </svg>
+        <div id="Password" class="password">
+            <span>Password</span>
+        </div>
+        <div id="Enter_your_password">
+            <span>Enter your password</span>
+        </div>
+
+        {% if error_msg %}
+            <p class="text-center">{{ error_msg }}</p>
+        {% endif %}
+    </form>
+
+	<svg class="Rectangle_5">
+		<rect id="Rectangle_5" rx="37" ry="37" x="0" y="0" width="251" height="74">
+		</rect>
+	</svg>
+	<div id="Login_s">
+		<span>Login</span>
+	</div>
+	<div id="Agro_Cold_Storage_Ltd">
+		<span>Agro Cold Storage Ltd.</span>
+	</div>
+	<div id="New_Layer">
+		<div id="Group_1">
+			<svg class="Path_1" viewBox="187.772 -518.903 236.728 244.904">
+				<path id="Path_1" d="M 395.2000122070313 -518.4000244140625 C 395.1000061035156 -518.2999877929688 391 -518 386 -517.5999755859375 C 340.7999877929688 -514.7000122070313 295.2999877929688 -501.2000122070313 259.7000122070313 -480.3999938964844 C 240.6000061035156 -469.2000122070313 218.6999969482422 -451.3999938964844 207.5 -437.8999938964844 L 203.6000061035156 -433.3999938964844 L 204.8999938964844 -422.3999938964844 C 206.8000030517578 -406.3999938964844 206.8999938964844 -378.6000061035156 205.1000061035156 -365.7999877929688 C 202.5 -347.6000061035156 196.6999969482422 -328.8999938964844 189.8999938964844 -317.2999877929688 C 188.5 -314.8999938964844 187.6000061035156 -313 187.8000030517578 -313 C 188.1000061035156 -313 190.8000030517578 -316.3999938964844 194 -320.6000061035156 C 211.8000030517578 -344.2999877929688 233.8999938964844 -366.7999877929688 264.2000122070313 -392.1000061035156 C 270.5 -397.2999877929688 281.7000122070313 -405.1000061035156 282.6000061035156 -404.7999877929688 C 283.1000061035156 -404.6000061035156 281.3999938964844 -402.2000122070313 278.7999877929688 -399.5 C 262.6000061035156 -382.5 247.5 -364.1000061035156 230.3999938964844 -340.5 C 211.5 -314.3999938964844 187.5 -277.6000061035156 188.6999969482422 -276.5 C 189.8000030517578 -275.3999938964844 204.8000030517578 -274.1000061035156 216.1000061035156 -274 C 247.8999938964844 -273.8999938964844 276.1000061035156 -282.1000061035156 300 -298.2000122070313 C 310.2000122070313 -305.1000061035156 312.2000122070313 -306.7000122070313 322.6000061035156 -317 C 346.1000061035156 -340.3999938964844 364.8999938964844 -372.3999938964844 382 -418.5 C 394.6000061035156 -452.3999938964844 410.7999877929688 -490.7999877929688 421.6000061035156 -512.0999755859375 C 423.2000122070313 -515.2999877929688 424.5 -518.2000122070313 424.5 -518.5 C 424.5 -519.0999755859375 395.8999938964844 -519 395.2000122070313 -518.4000244140625 Z">
+				</path>
+			</svg>
+		</div>
+	</div>
+</div>
+</body>
+</html>

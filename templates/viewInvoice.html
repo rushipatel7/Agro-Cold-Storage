@@ -1,0 +1,163 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} View Invoice {% endblock title %}
+
+{% block stylesheets %}
+  <style>
+    input:focus{
+      outline: none;
+    }
+
+    input[type='text']:focus {
+     border-radius: 5px;
+     border-width: 1px;
+     /*outline: none; */ 
+    }
+
+    input[type='text'] {
+      border-radius: 5px;
+      border-width: 1px;
+    }
+  </style>
+{% endblock stylesheets %}
+
+{% block content %}
+
+    <!-- Header -->
+    <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+      <a class="h4 mb-0 text-white text-uppercase d-none display-4 d-lg-inline-block ml-5" href="/"> 
+        <li class="fas fa-book text-green"></li>
+        View Invoices</a>
+      <div class="container-fluid">
+        
+      </div>
+    </div>
+
+    <div class="container-fluid mt--7">
+
+      <!-- Table -->
+      {% if show_data %}
+        <div class="row">
+          <div class="col">
+            <div class="card shadow" id="print-content">
+              <div class="card-header border-0">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <h3 class="mb-0">Invoice Details</h3>
+                    <h5>Total Number Of Records. {{ countData }}</h5>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="search_data">
+                      <form method="POST" action="{% url 'search_invoice' %}" class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+                        {% csrf_token %}
+                        <div class="form-group mb-0">
+                          <div class="input-group input-group-alternative">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text"><i class="fas fa-search text-black-50"></i></span>
+                            </div>
+                            <input class="form-group text-black-50" placeholder="Search" name="searchData" type="text" style="border: none;">
+                          </div>
+                        </div>
+                         
+                        <!-- <button class="btn btn-sm btn-primary ml-7" onclick="printDiv('print-content')">Print</button>
+                       </form> -->
+                    </div>
+                    
+                  </div> 
+                </div>
+              </div>
+              <div class="col"></div>
+              <div class="table-responsive" >
+                <table class="table align-items-center table-flush">
+                  <thead class="thead-light">
+                    <tr>
+                      <!-- <th scope="col">ID</th> -->
+                      <th scope="col">Invoice Number</th>
+                      <th scope="col">Customer Name</th>
+                      <th scope="col">Invoice Date</th>
+                      <th scope="col">Mobile Number</th>
+                      <th scope="col">Quantity</th>
+                      <th scope="col">Unit Price</th>
+                      <th scope="col">Total Price</th>
+                      <th scope="col">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for details in show_data %}
+                                <tr>
+                                    <!-- <th scope="row">{{ details.id }}</th> -->
+                                    <!-- <th scope="row">{{ forloop.counter }}</th>  -->
+                                    <!-- NumberWise Data Display -->
+                                    <td class="editable" data-id="{{ details.id }}" data-type="first_name">{{ details.id }}</td>
+                                    <td class="editable" data-id="{{ details.id }}" data-type="last_name">{{ details.customer_name }}</td>
+                                    <td class="editable" data-id="{{ details.id }}" data-type="address">{{ details.invoice_date }}</td>
+                                    <td class="editable" data-id="{{ details.id }}" data-type="village">{{ details.mobile_no }}</td>
+                                    <td class="editable" data-id="{{ details.id }}" data-type="pincode">{{ details.quantity }}</td>
+                                    <td class="editable" data-id="{{ details.id }}" data-type="pincode">{{ details.unit_price }}</td>
+                                    <td class="editable" data-id="{{ details.id }}" data-type="pincode">{{ details.total_price }}</td>
+                                    <td>
+                                        <!-- <a href="{% url 'update_data' details.id %}" class="btn btn-warning btn-sm">
+                                          <i class="ni ni-fat-add"></i> Edit
+                                          </a> -->
+
+                                          <!-- <a href="{% url 'pdfData' details.id %}" class="btn btn-warning btn-sm">
+                                          <i class="ni ni-fat-add"></i> PDF
+                                          </a> -->
+                                        <form action="{% url 'pdfData' details.id %}" method="POST" class="d-inline">
+                                            {% csrf_token %}
+                                            <!-- <input type="submit" class="btn btn-danger" value="delete"> -->
+                                            <button type="submit" class="btn btn-success btn-sm">
+                                                <i class="fas fa-arrow-circle-down"></i> Download
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                              {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <div class="card-footer py-4">
+                <!-- <h3 class="heading-small text-red">*Double tap to edit data</h3> -->
+                <nav aria-label="...">
+                  <ul class="pagination justify-content-end mb-0">
+                    <li class="page-item disabled">
+                      <a class="page-link" href="#" tabindex="-1">
+                        <i class="fas fa-angle-left"></i>
+                        <span class="sr-only">Previous</span>
+                      </a>
+                    </li>
+                    <li class="page-item active">
+                      <a class="page-link" href="#">1</a>
+                    </li>
+                    <li class="page-item">
+                      <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                      <a class="page-link" href="#">
+                        <i class="fas fa-angle-right"></i>
+                        <span class="sr-only">Next</span>
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+      {% include "includes/footer.html" %}
+
+    </div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+  <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script> -->
+
+{% endblock javascripts %}

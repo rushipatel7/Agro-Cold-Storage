@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Save Data in PDF Forms</title>
+    <!-- Favicon - loaded as static -->
+</head>
+<style>
+    table {
+        border-spacing: 15px;
+      }
+</style>
+<body>
+
+    <h1 style="font-size: 30px; font-weight: bold; color:green; text-align: center;"> Agro Cold Storage </h1>
+    <!-- <h3 style="text-align: center; font-weight: lighter; color: green;">Bayad-dahegam Road, Tenpur, Taluko-Bayad, District-Arvalli(Gujarat)</h3> -->
+    
+
+    
+    {% if printVar %}
+
+    <div class="table-responsive">
+        <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+                <th scope="col" style="text-align:right; font-size: 17px;" ><h2 class="text-dark">INVOICE</h2></th>
+                <th scope="col" style="text-align:right; font-size: 17px;" ><h2 class="text-dark">GST</h2></th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: right; font-size: 17px;"><h4>{{ invoice_number }}</h4></td>
+                    <td style="text-align: right; font-size: 17px;"><h4>{{ gst }}</h4></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+                <th scope="col" style="text-align:left; font-size: 17px;" ><h2 class="text-dark">Address</h2></th>
+                
+                <!-- <th scope="col" style="text-align:center;" ><h2 class="text-dark">Invoice</h2></th> -->
+                <th scope="col" style="text-align:right; font-size: 17px;" ><h2 class="text-dark">Date</h2></th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: left; font-size: 15px;">Bayad-dahegam Road, Tenpur, Taluko-Bayad, District-Arvalli(Gujarat)</td>
+                    <!-- <td style="text-align: center;">{{ invoice_num }}</td> -->
+                    <!-- {% for i in printVar %} -->
+                      <td style="text-align: right; font-size: 15px;">{{ today }}</td>
+                    <!-- {% endfor %} -->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <br>
+    <div class="table-responsive">
+        <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+                <th scope="col" style="text-align:left; font-size: 17px;" ><h2 class="text-dark">Customer Name</h2></th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: left; font-size: 15px;">{{ customer_name }}</td>
+                    <!-- <td style="text-align: left; font-size: 15px;">{{ f_name }} {{ l_name }}</td> -->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <br>
+    
+    <!-- <div class="table-responsive">
+        <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+                <th scope="col" style="text-align:left; font-size: 17px;" ><h2 class="text-dark">Village</h2></th>
+            </thead>
+            <tbody>
+                <tr>
+                      <td style="text-align: left; font-size: 15px;">{{ village }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div> -->
+
+
+    <div class="table-responsive" >
+        <table  class="table align-items-center table-flush">
+          <thead class="thead-light">              
+              <th scope="col" style="text-align: left; font-size: 17px;"><h2>Katta</h2></th>
+              <th scope="col" style="text-align: left; font-size: 17px;"><h2>Killo weight</h2></th>
+              <th scope="col" style="text-align: left; font-size: 17px;"><h2>Unit Price (Katta)</h2></th>
+              <th scope="col" style="text-align: left; font-size: 17px;"><h2>Total Price</h2></th>
+          </thead>
+          <tbody>
+            <tr>
+                <td style="text-align: left; font-size: 15px;">{{ quantity }} Katta</td>
+                <!-- <td style="text-align: left; font-size: 15px;">{{ katta }} Katta</td> -->
+                <td style="text-align: left; font-size: 15px;">{{ killo_quantity }} KG.</td>
+                <td style="text-align: left; font-size: 15px;">{{ unit_price }} Rs.</td>
+                <td style="text-align: left; font-size: 15px;">{{ total_price }} Rs.</td>
+                
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    {% endif %}
+        
+    
+    <!-- {% if printVar %}
+        <table  style="color: black;">
+            <thead>
+                <tr>
+
+
+                    <td><h1>Farmer Name:</h1></td>
+                    <td><h1>Village:</h1></td>
+                </tr>
+            </thead>
+                
+
+            <tbody>
+                {% for data in printVar %}
+                <tr>
+
+                    <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        {{ data.first_name }}  {{ data.last_name }}</td>
+                    <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        {{ data.village }}</td>
+                    <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        {{ data.crop_weight }}</td>
+                </tr>
+
+                {% endfor %} 
+            </tbody>
+        </table>
+     {%   endif %}
+    -->
+    
+        
+</body>
+</html>

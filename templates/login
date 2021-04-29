@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Supply Chain Management For Cold Storage</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="icon" href="{% static 'img/logo/logo_green.png' %}" type="image/gif" sizes="16x16">
+</head>
+<style>
+    .login_text {
+		left: 146px;
+		top: 169px;
+		position: absolute;
+		overflow: visible;
+		width: 661px;
+		height: 101px;
+		text-align: left;
+		font-family: Avenir Next LT Pro;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 84px;
+		color: rgba(17,17,17,1);
+    }
+    .sublogin_text {
+		left: 146px;
+		top: 294px;
+		position: absolute;
+		overflow: visible;
+		width: 661px;
+		height: 54px;
+		text-align: left;
+		font-family: Avenir Next LT Pro;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 45px;
+		color: rgba(130,130,130,1);
+	}
+</style>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+
+                <div class="login_text">
+                    <h1>LOGIN</h1>
+                </div>
+
+                <div class="sublogin_text">
+                    <h5>Login to access...</h5>
+                </div>
+
+                <form method="post" action="{% url 'admin-login' %}">
+                    {% csrf_token %}
+                    <input type="text" placeholder="Username" name="email" id="email">
+                    <input type="password" placeholder="Password" name="password" id="password">
+                    <button class="btn btn-info">LOGIN</button>
+
+                    {% if error_msg %}
+                        <p class="text-center">{{ error_msg }}</p>
+                    {% endif %}
+                        
+                </form>
+            </div>
+            <div class="col-lg-6">
+                
+            </div>
+        </div>    
+    </div>
+
+</body>
+</html>

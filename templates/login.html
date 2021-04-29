@@ -1,0 +1,230 @@
+{% extends 'layouts/base-fullscreen.html' %}
+
+{% block title %} Login {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+<style>
+	/*
+	body{
+		overflow: hidden;
+	} */
+	/*
+	h1 {
+		text-align: center;
+		font-family: Tahoma, Arial, sans-serif;
+		color: #06D85F;
+		margin: 80px 0;
+	  } */
+	  
+	  .box {
+		/* width: 40%;
+		margin: 0 auto;
+		background: rgba(255,255,255,0.2);
+		padding: 35px;
+		border: 2px solid #fff;
+		border-radius: 20px/50px;
+		background-clip: padding-box;
+		text-align: center; */
+	  }
+	  
+	  .button {
+		/* font-size: 1em; */
+		/* padding: 10px; */
+		color: #fff;
+		/* border: 2px solid #06D85F;
+		border-radius: 20px/50px; */
+		text-decoration: none;
+		cursor: pointer;
+		transition: all 0.3s ease-out;
+	  }
+	  .button:hover {
+		/*background: #06D85F;*/
+	  }
+	  
+	  .overlay {
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background: rgba(0, 0, 0, 0.7);
+		transition: opacity 500ms;
+		visibility: hidden;
+		opacity: 0;
+	  }
+	  .overlay:target {
+		visibility: visible;
+		opacity: 1;
+	  }
+	  
+	  .popup {
+		margin: 70px auto;
+		padding: 20px;
+		background: #fff;
+		border-radius: 5px;
+		width: 30%;
+		position: relative;
+		transition: all 5s ease-in-out;
+	  }
+	  
+	  .popup h2 {
+		margin-top: 0;
+		color: #333;
+		font-family: Tahoma, Arial, sans-serif;
+	  }
+	  .popup .close {
+		position: absolute;
+		top: 20px;
+		right: 30px;
+		transition: all 200ms;
+		font-size: 30px;
+		font-weight: bold;
+		text-decoration: none;
+		color: #333;
+	  }
+	  .popup .close:hover {
+		color: #06D85F;
+	  }
+	  .popup .content {
+		max-height: 30%;
+		overflow: hidden;
+	  }
+	  
+	  
+	  @media screen and (max-width: 700px){
+		.box{
+		  width: 70%;
+		}
+		.popup{
+		  width: 70%;
+		}
+	  }
+</style>
+{% endblock stylesheets %}
+
+{% block content %}
+
+    <!-- Page content -->
+
+    <div class="container mt--8 pb-5">
+      	<div class="row justify-content-center">
+			<div class="col-lg-5 col-md-7">
+				<div class="card bg-secondary shadow border-0">
+					<div class="card-header bg-transparent pb-5">
+
+						<div class="text-green text-center mt-2 mb-3 display-4">
+							Login      
+						</div>
+
+						<div class="text-center">
+							
+						</div>
+						<form method="POST" action="{% url 'admin-login' %}">
+							{% csrf_token %}
+							<!-- <h6 class="heading-small text-muted mb-4">Login Here...</h6> -->
+							<div class="pl-lg-4">
+								  <div class="row">
+									<div class="col-lg-12">
+										<div class="form-group">
+											<label class="form-control-label" for="input-username">Username</label>
+											<input type="text" id="input-username" name="input-username" class="form-control form-control-alternative" placeholder="Username">
+										</div>
+									</div>
+								  </div>
+								  <div class="row">
+									<div class="col-lg-12">
+										<div class="form-group">
+											<label class="form-control-label" for="input-pass">Password</label>
+											<input type="password" id="input-pass" name="input-pass" class="form-control form-control-alternative" placeholder="Password">
+										</div>
+									</div>
+								  </div>
+								  <div class="row">
+									  <button class="btn btn-sm btn-primary ml-3">LOGIN</button>
+								  </div>
+								  
+								  <div class="row">
+									  <a href="#popup1" class="text-blue text-sm ml-3 mt-3">Forget Password</a>
+								  </div>
+								  {% if error_msg %}
+								  	<div class="row">
+										<p class="text-center ml-3 mt-3">{{ error_msg }}</p>
+									</div>
+								  {% endif %}
+							</div>
+						  </form>
+
+							<div id="popup1" class="overlay">
+							  	<div class="popup">
+									
+									<div class="close_btn">
+										<div class="row">
+											<a href="#" class="close">&times;</a>
+										</div>
+									</div>
+									
+
+									<div class="content">
+										<form action="{% url 'check_username' %}" method="post" >
+											{% csrf_token %}
+											<div class="form-group">
+												<div class="row">
+													<div class="col-lg-12">
+														<div class="form-group">
+															<label class="form-control-label" for="input-username">Username</label>
+															<input class="form-control form-control-alternative" type="text" id="input-username" name="input-username" placeholder="Username">
+														</div>
+													</div>
+												</div>
+												
+												
+												<!-- <div class="row">
+													<div class="col-lg-12">
+													  <div class="form-group">
+														<label class="form-control-label" for="input_newPass">New Password</label>
+														<input type="password" id="input_newPass" name="input_newPass" class="form-control form-control-alternative" placeholder="New Password">
+													  </div>
+													</div>
+												  </div>
+						  
+												  <div class="row">
+													<div class="col-lg-12">
+													  <div class="form-group">
+														<label class="form-control-label" for="input_confirmNewPass">Confirm New Password</label>
+														<input type="password" id="input_confirmNewPass" name="input_confirmNewPass" class="form-control form-control-alternative" placeholder="Confirm New Password">
+													  </div>
+													</div>
+												  </div> -->
+
+												
+												
+												{% if not_find_username %}
+													<h6 class="text-danger text-sm">{{ not_find_username }}</h6>
+												{% endif %}
+													
+												<div class="row">
+													<button class="btn btn-sm btn-primary ml-3" >Check Username</button>
+												</div>  
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+				</div>
+			<!-- <div class="row mt-3">
+				<div class="col-6">
+				<a href="/" class="text-light"><small>Home</small></a>
+				</div>
+				<div class="col-6 text-right">
+				<a href="#" class="text-light"><small>Get Support</small></a>
+				</div>
+			</div> -->
+			</div>
+      	</div>
+    </div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}{% endblock javascripts %}
